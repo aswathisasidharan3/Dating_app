@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dating App</title>
+<!--{% load static %}-->
+<!--        <link rel="stylesheet" href="static/css/title.css">-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+
+        .bg-image {
+            background-image: url("{% static 'images/backgroundimg.png' %}");
+    background-position: center -60%;
+            background-size: auto;
+            background-repeat: no-repeat;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: absolute;
+            width: 325px;
+            z-index: -1;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            height:445px;
+            width: 325px;
+             position: fixed;
+            top: 90px; /* 10px from the bottom of the viewport */
+            right: 520px;
+        }
+
+        .form-control {
+            background-color: #fff;
+            padding: 10px;
+            margin-top:30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 390px;
+            width: 290px;
+
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top:40px;
+            border-radius: 4px;
+        }
+
+        .link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    width:290px;
+    text-align: center;
+    color: #fff;
+    background-color: black; /* Button background color */
+    text-decoration: none; /* Remove underline from link */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #007bff; /* Border matching the background */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.link-button:hover {
+    background-color: #0056b3; /* Darker background on hover */
+    color: #e6e6e6; /* Change text color on hover */
+}
+
+
+
+
+    </style>
+</head>
+<body>
+ <div class="bg-image"></div>
+      <div class="form-container">
+        <h2>Job Details</h2>
+        <form action="next_page.html" method="post">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Title" aria-label="Title"><br><br>
+                <label for="jobType">Expertise Level</label>
+                <select id="jobType" name="jobType" required>
+                    <option value="">Value</option>
+                    <option value="value1">Beginner</option>
+                    <option value="value2">Intermediate</option>
+                    <option value="value3">Expert</option>
+                </select>
+            </div>
+ <a href="{% url 'myapp:relationship' %}" class="link-button">Next</a>        </form>
+    </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

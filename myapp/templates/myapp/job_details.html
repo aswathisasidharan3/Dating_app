@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Job Status Checkout</title>
+<!--    {% load static %}-->
+<!--        <link rel="stylesheet" href="static/css/details.css">-->
+    <style>
+body {
+    background-image: url("{% static 'images/backgroundimg.png' %}");
+    background-position: center -60%;
+            background-size: auto;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: white;
+            max-width: 400px;
+            width: 260px;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .heading {
+            font-size: 26px;
+            text-align: center;
+            left:10px;
+            margin-bottom: 20px;
+        }
+          .personal-details-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.personal-details-form label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.personal-details-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+        .link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    width:220px;
+    text-align: center;
+    color: #fff;
+    background-color: black; /* Button background color */
+    text-decoration: none; /* Remove underline from link */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #007bff; /* Border matching the background */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.link-button:hover {
+    background-color: #0056b3; /* Darker background on hover */
+    color: #e6e6e6; /* Change text color on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading"><b>Job Details</b></div><br>
+<form class="personal-details-form" method="post">
+            <label for="Company Name"></label>
+            <input  id="Company Name" name="Company Name" placeholder="Company Name">
+
+           <label for="Designation"></label>
+           <input  id="Designation" name="Designation" placeholder="Designation">
+
+          <label for="Location"></label>
+          <input id="Location" name="Location"  placeholder="Location"><br><br>
+          <a href="{% url 'myapp:job_title' %}" class="link-button">Next</a>
+</form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
