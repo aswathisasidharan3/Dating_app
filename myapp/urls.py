@@ -16,11 +16,7 @@ urlpatterns=[
     path('job_title', views.JobTitleView.as_view(), name='job_title'),
     path('relationship', views.RelationView.as_view(), name='relationship'),
     path('interested', views.InterestView.as_view(), name='interest'),
-    path('home_popup', views.HomePopView.as_view(), name='home_popup'),
-    path('home_detail', views.HomeDetailView.as_view(), name='home_detail'),
-    path('qualification', views.QualificationView.as_view(), name='qualification'),
-    path('location', views.LocationView.as_view(), name='location'),
-    path('designation', views.DesignationView.as_view(), name='designation'),
+    
     # path('reset_password/',auth_views.PasswordResetView.as_view(), name='reset_password'),
     # path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
     # path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),

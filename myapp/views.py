@@ -98,17 +98,3 @@ class RelationView(TemplateView):
 class InterestView(TemplateView):
     template_name = 'myapp/interested.html'
 
-class HomePopView(TemplateView):
-    template_name = 'myapp/home_popup.html'
-
-class HomeDetailView(TemplateView):
-    template_name = 'myapp/home_detail.html'
-
-class QualificationView(TemplateView):
-    template_name = 'myapp/qualification.html'
-
-class LocationView(TemplateView):
-    template_name = 'myapp/location.html'
-
-class DesignationView(TemplateView):
-    template_name = 'myapp/designation.html'
