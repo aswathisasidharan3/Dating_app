@@ -26,16 +26,32 @@ class SignupView(FormView):
     model=User
     template_name= 'myapp/signup.html'
     form_class = UserCreationForm
-   
     success_url=reverse_lazy('myapp:details')
 
-
     def form_valid(self, form):
-        user= form.save(commit=False)
-        user.set_password(user.password)
-        user.save()
+    # Validate and clean passwords using the form's validation methods
+        password = form.cleaned_data.get('password')
+        confirm_password = form.cleaned_data.get('confirm_password')
+
+    # Check if passwords match
+        if password and confirm_password and password != confirm_password:
+            form.add_error('confirm_password', "Passwords do not match.")
+            return self.form_invalid(form)
+
+    # Save the user instance, but don't commit to the database yet
+        user = form.save(commit=False)
+
+    # Set the password using set_password to ensure it is hashed
+        user.set_password(password)
+        user.save()  # Now save the user to the database
+
+    # Specify the custom authentication backend
         backend = 'myapp.backends.EmailOrMobileBackend'
-        login(self.request,user, backend=backend)
+    
+    # Log the user in using the custom backend
+        login(self.request, user, backend=backend)
+    
+    # Redirect to the success URL
         return redirect(self.success_url)
 
 class LoginView(AuthLoginView):

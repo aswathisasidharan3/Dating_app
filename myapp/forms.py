@@ -3,7 +3,7 @@ from .models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib.auth.password_validation import validate_password
 
 class UserCreationForm(forms.ModelForm):
     confirm_password = forms.CharField(
@@ -17,6 +17,35 @@ class UserCreationForm(forms.ModelForm):
         widget=forms.PasswordInput({'class':'form-control'})
     
     )
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        
+        # Validate the password using Django's built-in validators
+        try:
+            validate_password(password)
+        except ValidationError as e:
+            raise ValidationError(e)
+
+        return password
+
+    def clean_password2(self):
+        password = self.cleaned_data.get('password')
+        confirm_password = self.cleaned_data.get('confirm_password')
+
+        # Check if the passwords match
+        if password and confirm_password and password != confirm_password:
+            raise ValidationError("Passwords do not match.")
+        
+        return confirm_password
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
+
+
     phone_number = forms.CharField(
         max_length=10,
         required=True,
