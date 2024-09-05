@@ -12,6 +12,8 @@ from .forms import *
 from django.contrib import messages
 from .models import User
 from django.core.mail import send_mail
+from django.contrib.auth.views import PasswordResetView,PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 
@@ -67,27 +69,21 @@ class LoginView(AuthLoginView):
 
 
 
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'myapp/password_reset.html'
+    email_template_name = 'myapp/password_reset_email.html'
+    subject_template_name = 'myapp/password_reset_subject'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('myapp:home')
 
 
-
-
-#     def get_success_url(self):
-#         return reverse_lazy('myapp:details')
-    
-#     def form_valid(self, form):
-#         email = self.request.POST.get('email')
-#         password = self.request.POST.get('password')
-#         user = authenticate(self.request, email=email, password=password)
-#         if user is not None:
-#             login(self.request, user)
-#             return super().form_valid(form)
-#         else:
-#             form.add_error(None, "Invalid email or password")
-#             return self.form_invalid(form)
-    
-
-
-
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'myapp/change_password.html'
+    success_message = "Successfully Changed Your Password"
+    success_url = reverse_lazy('myapp:home')
 
 class DetailsView(TemplateView):
     template_name = 'myapp/details.html'
